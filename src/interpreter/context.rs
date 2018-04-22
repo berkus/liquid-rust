@@ -155,13 +155,13 @@ impl Context {
             Error::with_msg("Root index must be an object key").context("index", &key)
         })?;
         let value = self.get_val(key)
-            .ok_or_else(|| Error::with_msg("Invalid index").context("index", &key))?;
+            .ok_or_else(|| Error::with_msg("Invalid root index").context("index", &key))?;
 
         indexes.fold(Ok(value), |value, index| {
             let value = value?;
             let child = value.get(index);
             let child =
-                child.ok_or_else(|| Error::with_msg("Invalid index").context("index", &key))?;
+                child.ok_or_else(|| Error::with_msg("Invalid child index").context("index", &key))?;
             Ok(child)
         })
     }
