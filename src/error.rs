@@ -164,7 +164,7 @@ impl fmt::Display for Error {
                 writeln!(f, "  with:")?;
             }
             for &(ref key, ref value) in trace.get_context() {
-                writeln!(f, "    {}={}", key, value)?;
+                writeln!(f, "    {}={:#?}", key, value)?;
             }
         }
         Ok(())
